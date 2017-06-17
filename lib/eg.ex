@@ -1,18 +1,11 @@
 defmodule Eg do
-  @moduledoc """
-  Documentation for Eg.
-  """
+  use GenServer
 
-  @doc """
-  Hello world.
+  @name Mango
 
-  ## Examples
+  ## Client API
 
-      iex> Eg.hello
-      :world
+  ## Callbacks
 
-  """
-  def hello do
-    :world
-  end
+  ## Helpers
 end
