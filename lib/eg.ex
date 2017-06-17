@@ -21,6 +21,7 @@ defmodule Eg do
   end
 
   def clear do
+    GenServer.cast(@name, :reset_table)
   end
 
   def exists?(key) do
@@ -72,6 +73,11 @@ defmodule Eg do
     {:noreply, state}
   end
 
+  def handle_cast(:reset_table, state) do
+    reset_table()
+    {:noreply, state}
+  end
+
   def handle_cast(:stop, state) do
     {:stop, :normal, state}
   end
@@ -109,5 +115,10 @@ defmodule Eg do
 
   defp delete_term(key) do
     :ets.delete(:terms, key)
+  end
+
+  defp reset_table do
+    :ets.delete(:terms)
+    :ets.new(:terms, [:set, :protected, :named_table])
   end
 end
